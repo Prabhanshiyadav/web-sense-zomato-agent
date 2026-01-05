@@ -3,6 +3,11 @@
 ## Overview
 This project is a semi-autonomous web interaction agent that explores Zomato, interacts with the site dynamically, observes the environment, and generates UX insights. The agent uses AI reasoning, memory, and smart browser automation.
 
+## 🎥 Demo Video
+
+[Click here to watch demo](demo/demo.mp4)
+
+
 ---
 
 ## Features
