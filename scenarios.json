@@ -1,0 +1,9 @@
+{
+  "default": [
+    {"thought":"Searching food","action":"fill","value":"Pizza Delhi"},
+    {"thought":"Submit","action":"press"},
+    {"thought":"Click first restaurant","action":"click"},
+    {"thought":"Analyze UX","action":"observe"},
+    {"thought":"Done","action":"finish"}
+  ]
+}

@@ -1,21 +1,27 @@
 import json
+import os
 from agent.memory import AgentMemory
 
 class LLMReasoner:
-    def __init__(self):
+    def __init__(self, scenario="default"):
         self.step = 0
         self.memory = AgentMemory()
         self.history = self.memory.load()
+        self.scenario_name = scenario
+        self.scenarios = self.load_scenarios()
+        self.steps = self.scenarios.get(self.scenario_name, [])
+
+    def load_scenarios(self):
+        if os.path.exists("scenarios.json"):
+            with open("scenarios.json", "r") as f:
+                return json.load(f)
+        return {"default": []}
 
     async def decide(self, state, goal):
-        self.step += 1
+        # step is 1-based index in the logic, so subtract 1 for list access
+        if self.step < len(self.steps):
+            action = self.steps[self.step]
+            self.step += 1
+            return json.dumps(action)
 
-        if self.step == 1:
-            return json.dumps({"thought":"Searching food","action":"fill","value":"Pizza Delhi"})
-        if self.step == 2:
-            return json.dumps({"thought":"Submit","action":"press"})
-        if self.step == 3:
-            return json.dumps({"thought":"Click first restaurant","action":"click"})
-        if self.step == 4:
-            return json.dumps({"thought":"Analyze UX","action":"observe"})
         return json.dumps({"thought":"Done","action":"finish"})
