@@ -7,7 +7,9 @@ from agent.runner import AgentRunner
 
 
 async def main():
-    browser = Browser()
+    # Updated to pass headless=False
+    browser = Browser(headless=False)
+    # LLMReasoner now defaults to "default" scenario
     reasoner = LLMReasoner()
     observer = Observer(browser)
     insight = InsightEngine()
